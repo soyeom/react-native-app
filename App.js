@@ -8,8 +8,8 @@ export default function App() {
     setEnteredGoalText(enteredText);    
   }
 
-  function addGoalHandler(enteredText) {
-    
+  function addGoalHandler() {
+    console.log(enteredGoalText);
   }
 
   return (

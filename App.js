@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  ScrollView,
+} from "react-native";
 
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState("");
@@ -26,11 +33,20 @@ export default function App() {
         />
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
+
+      //ScrollView 공간에 있는 항목을 전체 공간에서 스크롤할 수 있게 한다
       <View style={styles.goalsContainer}>
-        {courseGoals.map((goal) => (
-          <Text key={goal}>{goal}</Text>
-        ))}
+        <ScrollView>
+          {courseGoals.map((goal) => (
+            <View style={styles.goalItem}>
+              <Text style={styles.goalItem} key={goal}>
+                {goal}
+              </Text>
+            </View>
+          ))}
+        </ScrollView>
       </View>
+
     </View>
   );
 }
@@ -42,10 +58,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   inputContainer: {
+    flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingBottom: 24,
+    marginBottom: 24,
     borderBottomWidth: 1,
     borderBottomColor: "#cccccc",
   },
@@ -57,6 +74,15 @@ const styles = StyleSheet.create({
     padding: 8, // TextInput의 안쪽 여백
   },
   goalsContainer: {
-    flex: 4,
+    flex: 5,
+  },
+  goalItem: {
+    margin: 8,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: "#5e0acc",
+  },
+  goalText: {
+    color: "white",
   },
 });

@@ -6,6 +6,7 @@ import {
   Button,
   TextInput,
   ScrollView,
+  FlatList,
 } from "react-native";
 
 export default function App() {
@@ -19,7 +20,7 @@ export default function App() {
   function addGoalHandler() {
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
-      enteredGoalText,
+      { text: enteredGoalText, id: Math.random().toString() },
     ]);
   }
 
@@ -34,19 +35,23 @@ export default function App() {
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
 
-      //ScrollView 공간에 있는 항목을 전체 공간에서 스크롤할 수 있게 한다
       <View style={styles.goalsContainer}>
-        <ScrollView>
-          {courseGoals.map((goal) => (
-            <View style={styles.goalItem}>
-              <Text style={styles.goalItem} key={goal}>
-                {goal}
-              </Text>
-            </View>
-          ))}
-        </ScrollView>
+        <FlatList
+          data={courseGoals}
+          renderItem={(itemData) => {
+            //itemData은 FlatList가 내부적으로 생성한 객체
+            //데이터 배열 내 개별 데이터 항목으로 감싸 준 객체
+            return (
+              <View style={styles.goalItem}>
+                <Text style={styles.goalText}>{itemData.item.text}</Text>
+              </View>
+            );
+          }}
+          keyExtractor={(item, index) => {
+            return item.id;
+          }}
+        />
       </View>
-
     </View>
   );
 }

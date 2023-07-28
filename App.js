@@ -14,8 +14,13 @@ export default function App() {
     ]);
   }
 
-  function deleteGoalHandler() {
-    console.log("DELETE");
+  function deleteGoalHandler(id) {
+    //이전 상태에 기반한 상태 갱신
+    setCourseGoals(currentCourseGoals => {
+      //이전 배열에서 필터로 걸러낸 최신 상태의 새로운 배열
+      //내부 함수를 배열 안에 있는 모든 아이템에 실행
+      return currentCourseGoals.filter((goal) => goal.id !== id);
+    });
   }
 
   return (
@@ -29,6 +34,7 @@ export default function App() {
             return (
               <GoalItem
                 text={itemData.item.text}
+                id={itemData.item.id}
                 onDeleteItem={deleteGoalHandler}
               />
             );

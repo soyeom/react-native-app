@@ -1,8 +1,9 @@
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 
 function GoalItem(props) {
+    //bind는 나중에 실행할 함수를 미리 조정할 수 있게 한다.
     return (
-        <Pressable onPress={props.onDeleteItem}>
+        <Pressable onPress={props.onDeleteItem.bind(this, props.id)}>
             <View style={styles.goalItem}>
                 <Text style={styles.goalText}>{props.text}</Text>
             </View>

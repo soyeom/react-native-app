@@ -8,8 +8,14 @@ export default function App() {
   const [modalIsVisible, setModalIsVisible] = useState(false);
   const [courseGoals, setCourseGoals] = useState([]);
 
+  //모달을 여는 함수
   function startAddGoalHandler() {
     setModalIsVisible(true);
+  }
+
+  //모달을 닫는 함수
+  function endAddGoalHandler() {
+    setModalIsVisible(false);
   }
 
   function addGoalHandler(enteredGoalText) {
@@ -17,6 +23,7 @@ export default function App() {
       ...currentCourseGoals,
       { text: enteredGoalText, id: Math.random().toString() },
     ]);
+    endAddGoalHandler(); //또는 setModalIsVisible(false)
   }
 
   function deleteGoalHandler(id) {
@@ -35,9 +42,11 @@ export default function App() {
         color="#5e0acc"
         onPress={startAddGoalHandler}
       />
-      { <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler} />
-}
-
+      <GoalInput
+        visible={modalIsVisible}
+        onAddGoal={addGoalHandler}
+        onCancel={endAddGoalHandler}
+      />
       <View style={styles.goalsContainer}>
         <FlatList
           data={courseGoals}

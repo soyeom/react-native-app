@@ -24,7 +24,10 @@ function GoalInput(props) {
   return (
     <Modal visible={props.visible} animationType="slide">
       <View style={styles.inputContainer}>
-        <Image style={styles.image} source={require('..//assets/images/goal.png')} />
+        <Image
+          style={styles.image}
+          source={require("..//assets/images/goal.png")}
+        />
         <TextInput
           style={styles.textInput}
           placeholder="Your course goal!"
@@ -33,10 +36,10 @@ function GoalInput(props) {
         />
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
-            <Button title="Add Goal" onPress={addGoalHandler} />
+            <Button title="Cancel" onPress={props.onCancel} color='#f31282' />
           </View>
           <View style={styles.button}>
-            <Button title="Cancel" onPress={props.onCancel} />
+            <Button title="Add Goal" onPress={addGoalHandler} color="#b180f0" />
           </View>
         </View>
       </View>
@@ -52,18 +55,21 @@ const styles = StyleSheet.create({
     justifyContent: "center", //모든 콘텐츠가 중간에 모인다
     alignItems: "center",
     padding: 16, // 입력란 바깥쪽 여백
-    backgroundColor: '#311b6b'
+    backgroundColor: "#311b6b",
   },
   image: {
-    width:  100,
+    width: 100,
     height: 100,
     margin: 20,
   },
   textInput: {
     borderWidth: 1,
-    borderColor: "#cccccc",
+    borderColor: "#e4d0ff",
+    borderRadius: 6,
+    backgroundColor: "#e4d0ff",
+    color: '#120438',
     width: "100%",
-    padding: 8, // TextInput의 안쪽 여백
+    padding: 13, // TextInput의 안쪽 여백
   },
   buttonContainer: {
     flexDirection: "row",

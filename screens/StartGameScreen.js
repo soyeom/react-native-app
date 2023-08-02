@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         padding: 16,
         marginTop: 100,
         marginHorizontal: 24, //양 옆에 간격
-        backgroundColor: '#72063c',
+        backgroundColor: '#4e0329',
         borderRadius: 8,
         elevation: 4, //안드로이드에서 그림자 넣는 프로퍼티
         shadowColor: 'black', //ios에서 그림자 넣는 프로퍼티

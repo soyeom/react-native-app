@@ -11,8 +11,14 @@ function StartGameScreen() {
                 keyboardType="number-pad"
                 autoCapitalize="none"
             />
-            <PrimaryButton>Reset</PrimaryButton>
-            <PrimaryButton>Confirm</PrimaryButton>
+            <View style={styles.buttonsContainer}>
+                <View style={styles.buttonContainer}>
+                    <PrimaryButton>Reset</PrimaryButton>
+                </View>
+                <View style={styles.buttonContainer}>
+                    <PrimaryButton>Confirm</PrimaryButton>
+                </View>
+            </View>
         </View>
     );
 }
@@ -22,10 +28,12 @@ export default StartGameScreen;
 const styles = StyleSheet.create({
     inputContainer: {
         //flex: 1, 스타일링 객체가 가능한 많은 공간 차지
+        justifyContent:'center', //세로축을 따라 요소 설정
+        alignItems: 'center', //가로축을 따라 요소 설정, 텍스트에 필요할 정도로만 버튼 크기가 제한됨
         padding: 16,
         marginTop: 100,
         marginHorizontal: 24, //양 옆에 간격
-        backgroundColor: '#4e0329',
+        backgroundColor: '#3b021f',
         borderRadius: 8,
         elevation: 4, //안드로이드에서 그림자 넣는 프로퍼티
         shadowColor: 'black', //ios에서 그림자 넣는 프로퍼티
@@ -34,7 +42,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3
     },
     numberInput: {
-        height: 50,
+        height: 50, //요소 너비 제한
         width: 50,
         textAlign: 'center',
         fontSize: 32,
@@ -44,4 +52,10 @@ const styles = StyleSheet.create({
         marginVertical: 8,
         fontWeight: 'bold'
     },
+    buttonsContainer: {
+        flexDirection: 'row', //버튼 가로 정렬
+    },
+    buttonContainer: {
+        flex: 1
+    }
 })

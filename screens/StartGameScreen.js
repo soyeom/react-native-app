@@ -4,7 +4,7 @@ import { TextInput, View, StyleSheet, Alert } from "react-native";
 
 import PrimaryButton from "../components/PrimaryButton";
 
-function StartGameScreen() {
+function StartGameScreen({onPickNumber}) {
     const [enteredNumber, setEnteredNumber] = useState('');
 
     function numberInputHandler(enteredText) {
@@ -29,6 +29,9 @@ function StartGameScreen() {
             );
             return;
         }
+
+        //이 함수에 대해 유효성 검사를 통과한 숫자
+        onPickNumber(chosenNumber);
     }
 
     return (

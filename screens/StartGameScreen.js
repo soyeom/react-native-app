@@ -1,6 +1,6 @@
 //맞혀야 할 숫자를 고르고 게임을 시작하는 화면
 import { useState } from "react";
-import { TextInput, View, StyleSheet } from "react-native";
+import { TextInput, View, StyleSheet, Alert } from "react-native";
 
 import PrimaryButton from "../components/PrimaryButton";
 
@@ -11,8 +11,24 @@ function StartGameScreen() {
         setEnteredNumber(enteredText);
     }
 
-    function confirmInputHandler() {
+    function resetInputHandler() {
+        //빈 문자열로 초기화
+        setEnteredNumber('');
+    }
 
+    function confirmInputHandler() {
+        //숫자가 아닌 문자열이 입력되면 변환 실패
+        const chosenNumber = parseInt(enteredNumber);
+
+        //실패 조건 체크
+        if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
+            Alert.alert(
+                'Invalid number!', 
+                'Number has to be a number between 1 and 99.',
+                [{text: 'Okay', style: 'destructive', onPress:resetInputHandler}]
+            );
+            return;
+        }
     }
 
     return (
@@ -27,7 +43,7 @@ function StartGameScreen() {
             />
             <View style={styles.buttonsContainer}>
                 <View style={styles.buttonContainer}>
-                    <PrimaryButton>Reset</PrimaryButton>
+                    <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
                 </View>
                 <View style={styles.buttonContainer}>
                     <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
@@ -42,7 +58,7 @@ export default StartGameScreen;
 const styles = StyleSheet.create({
     inputContainer: {
         //flex: 1, 스타일링 객체가 가능한 많은 공간 차지
-        justifyContent:'center', //세로축을 따라 요소 설정
+        justifyContent: 'center', //세로축을 따라 요소 설정
         alignItems: 'center', //가로축을 따라 요소 설정, 텍스트에 필요할 정도로만 버튼 크기가 제한됨
         padding: 16,
         marginTop: 100,
